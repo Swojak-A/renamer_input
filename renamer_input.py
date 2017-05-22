@@ -52,54 +52,54 @@ def count_return(mod, func1, func2):
         return func1, func2
 
 
-
-print(
+if __name__ == "__main__":
+    print(
 """
 === renamer_input - changing file names according to user input ===
 
 PLEASE FOLLOW THE INSTRUCTIONS
 """)
 
-#1. asking for right placement of files
-input('1. Put the files you want to rename in the "/files" directory in the renamer_input folder and press Enter to continue\n')
+    #1. asking for right placement of files
+    input('1. Put the files you want to rename in the "/files" directory in the renamer_input folder and press Enter to continue\n')
 
-create_item_dict(relative_path)
+    create_item_dict(relative_path)
 
-print("We found the following files: \n" + str(list(k for k, v in item_dict.items() if v == "file")) + "\n")
+    print("We found the following files: \n" + str(list(k for k, v in item_dict.items() if v == "file")) + "\n")
 
-mod_dir_user_input = input('Do you also want to change the directory (folder) names [type "YES" to approve and press Enter OR press Enter to decline]: \n')
+    mod_dir_user_input = input('Do you also want to change the directory (folder) names [type "YES" to approve and press Enter OR press Enter to decline]: \n')
 
-if "y" in mod_dir_user_input.lower():
-    modify_directory_names = True
-    print("We found the following directories: \n" + str(
-        list(k for k, v in item_dict.items() if v == "directory")) + "\n")
+    if "y" in mod_dir_user_input.lower():
+        modify_directory_names = True
+        print("We found the following directories: \n" + str(
+            list(k for k, v in item_dict.items() if v == "directory")) + "\n")
 
-#2. getting phrase that user want to be changed
-phrase_to_change = input("2. Type a phrase you want to change and press Enter: \n")
+    #2. getting phrase that user want to be changed
+    phrase_to_change = input("2. Type a phrase you want to change and press Enter: \n")
 
-#3. checking if there are files that qualify to be changed and then renaming them
-file_count, directory_count = count_return(modify_directory_names,
-                                           browse_item_dict(item_dict, "file", item_count),
-                                           browse_item_dict(item_dict, "directory", item_count))
+    #3. checking if there are files that qualify to be changed and then renaming them
+    file_count, directory_count = count_return(modify_directory_names,
+                                               browse_item_dict(item_dict, "file", item_count),
+                                               browse_item_dict(item_dict, "directory", item_count))
 
-if (file_count + directory_count) > 0:
-    if modify_directory_names is False:
-        print("There is %s files matching criteria \n" % file_count)
-    if modify_directory_names is True:
-        print("There is {x} files and {y} directories matching criteria \n".format(x=file_count, y=directory_count))
+    if (file_count + directory_count) > 0:
+        if modify_directory_names is False:
+            print("There is %s files matching criteria \n" % file_count)
+        if modify_directory_names is True:
+            print("There is {x} files and {y} directories matching criteria \n".format(x=file_count, y=directory_count))
 
-    changed_phrase = input("3. Type phrase intended to replace phrase you wanted to change and press Enter: \n")
+        changed_phrase = input("3. Type phrase intended to replace phrase you wanted to change and press Enter: \n")
 
-    no_of_renamed_file, no_of_renamed_dir = count_return(modify_directory_names,
-                                                            browse_item_dict(item_dict, "file", rename),
-                                                            browse_item_dict(item_dict, "directory", rename))
+        no_of_renamed_file, no_of_renamed_dir = count_return(modify_directory_names,
+                                                                browse_item_dict(item_dict, "file", rename),
+                                                                browse_item_dict(item_dict, "directory", rename))
 
-    print("No more files matching criteria \n")
-    if modify_directory_names is False:
-        print("Summary: %s files was renamed \n" % no_of_renamed_file)
-    if modify_directory_names is True:
-        print("Summary: {x} files and {y} directories was renamed \n".format(x=no_of_renamed_file, y=no_of_renamed_dir))
-else:
-    print("\nNo items matching criteria \n")
+        print("No more files matching criteria \n")
+        if modify_directory_names is False:
+            print("Summary: %s files was renamed \n" % no_of_renamed_file)
+        if modify_directory_names is True:
+            print("Summary: {x} files and {y} directories was renamed \n".format(x=no_of_renamed_file, y=no_of_renamed_dir))
+    else:
+        print("\nNo items matching criteria \n")
 
-input("Press Enter to close the program")
+    input("Press Enter to close the program")
